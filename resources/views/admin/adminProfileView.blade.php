@@ -9,12 +9,17 @@
                 <div class="card">
                     <br><br>
                     <div style="text-align: center;">
-                        <img class="rounded-circle avatar-xl" src="{{ asset('backend/assets/images/small/img-5.jpg') }}" alt="Card image cap">
+                        <img class="rounded-circle avatar-xl" src="{{ (!empty($adminData->profile_image))? url('upload/admin_images/'.$adminData->profile_image):url('upload/no_image.jpg') }}" alt="Card image cap">
                     </div>
                         <div class="card-body">
-                    <h4 class="card-title mt-2">Ime: {{ $adminData->name }}</h4>
+                            <div class="row">
+                            <div class="col-md-6">
+                    <h4 class="card-title mt-2">Ime: {{ $adminData->name ?? 'None' }}</h4>
                     <h4 class="card-title mt-2">Korisničko ime: {{ $adminData->username }}</h4>
-                    <h4 class="card-title mt-2 mb-3">E-mail: {{ $adminData->email }}</h4>
+                    <h4 class="card-title mt-2"> E-mail: {{ $adminData->email }}</h4>
+                        </div>
+                            </div>
+                    <br>
                     <a class="btn btn-info btn-rounded waves-effect waves-light" href="{{ route('edit.profile') }}">Uredi profil</a>
                     </div>
                 </div>

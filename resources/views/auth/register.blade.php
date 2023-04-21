@@ -48,7 +48,6 @@
             <input class="form-control" id="name" type="text" name="name" required="" placeholder="Name">
         </div>
     </div>
-
     <div class="form-group mb-3 row">
         <div class="col-12">
             <input class="form-control" id="username" type="text" name="username" required="" placeholder="UserName">

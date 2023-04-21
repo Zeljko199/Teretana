@@ -31,10 +31,13 @@ Route::middleware('auth')->group(function () {
 
 //Admin rute
 Route::controller(AdminController::class)->group(function (){
-   Route::get('/admin/logout', 'destroy')->name('admin.logout');
-   Route::get('/admin/profile', 'Profile')->name('admin.profile');
-   Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
+   Route::get('/admin/logout', 'destroy')->name('admin.logout')/*->middleware('can:isAdmin')*/;
+   Route::get('/admin/profile', 'Profile')->name('admin.profile')/*->middleware('can:isAdmin')*/;
+   Route::get('/edit/profile', 'EditProfile')->name('edit.profile')/*->middleware('can:isAdmin')*/;
+   Route::post('/store/profile', 'StoreProfile')->name('store.profile');
 });
 
+//Route::resource('exercise', );
 //Login i registracija - koriste se rute iz auth.php
 require __DIR__.'/auth.php';
+Route::get('/', [AdminController::class, 'Profile'])->middleware(\App\Http\Middleware\Authenticate::class);
