@@ -16,6 +16,13 @@
                 </li>
 
                 <li>
+                    <a href="{{ route('user.select') }}" class="waves-effect">
+                        <i class="ri-account-circle-line"></i><span class="badge rounded-pill bg-success float-end">5</span>
+                        <span>Users</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="calendar.html" class=" waves-effect">
                         <i class="ri-calendar-2-line"></i>
                         <span>Calendar</span>

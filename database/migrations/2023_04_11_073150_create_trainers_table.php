@@ -13,12 +13,9 @@ return new class extends Migration
     {
         Schema::create('trainers', function (Blueprint $table) {
             $table->increments('trainer_id');
-            $table->unsignedBigInteger('user_id');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('phone');
+            $table->string('description');
+            $table->date('join_date');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
