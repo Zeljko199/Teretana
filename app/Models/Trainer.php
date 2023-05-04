@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Trainer extends Model
 {
@@ -14,4 +15,7 @@ class Trainer extends Model
         'last_name',
         'phone'
     ];
+    public function TrainerToUserInfo(): HasOne{
+        return $this->hasOne(UserInfo::class);
+    }
 }

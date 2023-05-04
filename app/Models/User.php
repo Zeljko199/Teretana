@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -13,16 +14,18 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const TYPE_ADMIN = 'admin';
+    const TYPE_TRAINER = 'trainer';
+    const TYPE_MEMBER = 'member';
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'username',
         'email',
-        'password',
+        'password'
     ];
 
     /**
@@ -43,6 +46,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function UserToUserInfo(): HasOne{
+        return $this->hasOne(UserInfo::class);
+        // pozivanje: $phone = User::find(1)->phone;
+    }
 
     public function getRoleAttribute(){
         return $this->attributes['role'];

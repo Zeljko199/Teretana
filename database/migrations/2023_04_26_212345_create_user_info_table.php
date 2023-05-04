@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('user_info', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedInteger('trainer_id');
-            $table->unsignedInteger('member_id');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('phone');
-            $table->integer('age');
-            $table->string('gender');
+            $table->unsignedInteger('trainer_id')->nullable();
+            $table->unsignedInteger('member_id')->nullable();
+            $table->string('first_name', 30);
+            $table->string('last_name', 30);
+            $table->string('phone', 20)->nullable();
+            $table->decimal('age',3)->nullable();
+            $table->string('gender', 6)->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('trainer_id')->references('trainer_id')->on('trainers')->onUpdate('cascade')->onDelete('cascade');

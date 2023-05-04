@@ -29,7 +29,7 @@
 
                 <div class="text-center">
                     <div class="mb-3">
-                        <a href="index.html" class="auth-logo">
+                        <a href="{{ route('admin.profile') }}" class="auth-logo">
                             <img src="{{ asset('logo/logo.png') }}" height="150" class="logo-dark mx-auto" alt="">
                             <img src="{{ asset('logo/logo.png') }}" height="150" class="logo-light mx-auto" alt="">
                         </a>
@@ -45,7 +45,12 @@
 
     <div class="form-group mb-3 row">
         <div class="col-12">
-            <input class="form-control" id="name" type="text" name="name" required="" placeholder="Name">
+            <input class="form-control" id="first_name" type="text" name="first_name" required="" placeholder="First name">
+        </div>
+    </div>
+    <div class="form-group mb-3 row">
+        <div class="col-12">
+            <input class="form-control" id="last_name" type="text" name="last_name" required="" placeholder="Last name">
         </div>
     </div>
     <div class="form-group mb-3 row">

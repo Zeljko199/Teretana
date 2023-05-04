@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Member extends Model
 {
@@ -16,4 +17,7 @@ class Member extends Model
         'age',
         'gender'
     ];
+    public function MemberToUserInfo(): HasOne{
+        return $this->hasOne(UserInfo::class);
+    }
 }
