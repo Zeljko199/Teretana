@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use App\Models\Trainer;
 use App\Models\User;
+use App\Models\UserInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,38 +31,46 @@ class AdminController extends Controller
         //Dobavlja ID trenutno autentifikovanog korisnika
         $user_id = Auth::user()->id;
         // zatim f-ja koristi taj ID da pronađe podatke o korisniku i snesta podatke u $adminData
-        $adminData = User::find($user_id);
+        $userDate = User::with('UserInfo')->find($user_id);
         // biće prikazani podaci o trenutno autentifikovanom korisniku. adminData je varijabla koja sadrzi informacije
         // o trenutno autentifikovanom korisniku    */
-        /*$membar_id = Auth::membar()->membar_id;
-        $membarData = Member::find($membar_id);
-
-        $trainer_id = Auth::trainer()->trainer_id;
-        $trainerData = Trainer::find($trainer_id);*/
-        return view('admin.adminProfileView', compact('adminData'));
+        return view('admin.adminProfileView', compact('userDate'));
     }
 
     public function EditProfile(){
         $user_id = Auth::user()->id;
-        $editData = User::find($user_id);
+        $editData = User::with('UserInfo')->find($user_id);
         return view('admin.adminProfileEdit', compact('editData'));
     }
 
     public function StoreProfile(Request $request){
+
+        $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+        ]);
+
         $user_id = Auth::user()->id;
-        $data = User::find($user_id);
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->username = $request->username;
+        $user = User::find($user_id);
+        $user->email = $request->email;
+        $user->username = $request->username;
 
         if ($request->file('profile_image')) {
             $file = $request->file('profile_image');
 
             $filename = date('YmdHi').$file->getClientOriginalName();
             $file->move(public_path('image/admin_images'),$filename);
-            $data['profile_image'] = $filename;
+            $user['profile_image'] = $filename;
         }
-        $data->save();
+
+        $user->save();
+
+        $userInfo = new UserInfo();
+        $userInfo->first_name = $request->first_name;
+        $userInfo->last_name = $request->last_name;
+        $userInfo->save();
 
         $notification = array(
             'message' => 'Admin Profile Updated Successfully',

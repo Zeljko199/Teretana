@@ -9,13 +9,16 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Trainer extends Model
 {
     use HasFactory;
+    const TABLE = 'trainers';
+    protected $table = Trainer::TABLE;
 
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'phone'
+        'description',
+        'join_date',
+        'is_active'
     ];
-    public function TrainerToUserInfo(): HasOne{
-        return $this->hasOne(UserInfo::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

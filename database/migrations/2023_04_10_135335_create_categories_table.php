@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Workout;
+use App\Models\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,10 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Workout::TABLE, function (Blueprint $table) {
-            $table->increments('workout_id');
+        Schema::create(Category::TABLE, function (Blueprint $table) {
+            $table->id();
             $table->string('name');
-            $table->string('description');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workouts');
+        Schema::dropIfExists('categories');
     }
 };

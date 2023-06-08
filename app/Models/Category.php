@@ -4,15 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Payment extends Model
+class Category extends Model
 {
     use HasFactory;
-    const TABLE = 'payments';
-    protected $table = Payment::TABLE;
+    const TABLE = 'categories';
+    protected $table = self::TABLE;
 
     protected $fillable = [
-        'payment_date',
-        'amount'
+        'name'
     ];
+
 }

@@ -9,16 +9,23 @@
                 <li class="menu-title">Menu</li>
 
                 <li>
-                    <a href="index.html" class="waves-effect">
+                    <a href="{{ route('dashboard') }}" class="waves-effect">
                         <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">3</span>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('user.select') }}" class="waves-effect">
+                    <a href="{{ route('users.index') }}" class="waves-effect">
                         <i class="ri-account-circle-line"></i><span class="badge rounded-pill bg-success float-end">5</span>
                         <span>Users</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('plans.index') }}" class="waves-effect">
+                        <i class="nav-icon fas fa-file"></i><span class="badge rounded-pill bg-success float-end">5</span>
+                        <span>Workout plans</span>
                     </a>
                 </li>
 

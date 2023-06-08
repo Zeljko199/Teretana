@@ -1,9 +1,9 @@
-<header id="page-topbar">
+<header id="page-topbar" xmlns:wire="http://www.w3.org/1999/xhtml">
     <div class="navbar-header">
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="index.html" class="logo logo-dark">
+                <a href="{{ route('dashboard') }}" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="{{ asset('backend/assets/images/logo-sm.png') }}" alt="logo-sm" height="22">
                                 </span>
@@ -12,7 +12,7 @@
                                 </span>
                 </a>
 
-                <a href="index.html" class="logo logo-light">
+                <a href="{{ route('dashboard') }}" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="{{ asset('backend/assets/images/logo-sm.png') }}" alt="logo-sm-light" height="22">
                                 </span>
@@ -27,10 +27,15 @@
             </button>
 
             <!-- App Search-->
-            <form class="app-search d-none d-lg-block">
-                <div class="position-relative">
-                    <input type="text" class="form-control" placeholder="Search...">
+            <form id="search-form" class="app-search d-none d-lg-block" action="{{ route('users.search', ['email'=>'email']) }}" method="GET" role="search">
+                <div class="position-relative row">
+                    <div class="col-md-9">
+                    <input type="text" name="email" class="form-control" value="{{ Request ::get('search') }}" placeholder="Search...">
                     <span class="ri-search-line"></span>
+                    </div>
+                    <div class="col-md-3 d-flex flex-row">
+                    <button class="dugmePretraga" style="border-radius: 12px" type="submit">Pretraži</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -66,3 +71,11 @@
         </div>
     </div>
 </header>
+<script>
+    document.getElementById('search-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Zaustavi podrazumevano slanje forme
+
+        // Izvrši željenu akciju ili direktno preusmerenje na putanju za pretragu
+        this.submit(); // Ponovo pokreni slanje forme
+    });
+</script>

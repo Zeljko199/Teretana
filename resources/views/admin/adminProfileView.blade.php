@@ -14,9 +14,10 @@
                         <div class="card-body">
                             <div class="row">
                             <div class="col-md-6">
-                    <h4 class="card-title mt-2">Ime: {{ $adminData->name ?? 'None' }}</h4>
-                    <h4 class="card-title mt-2">Korisničko ime: {{ $adminData->username }}</h4>
-                    <h4 class="card-title mt-2"> E-mail: {{ $adminData->email }}</h4>
+                    <h5 class="mt-2">Ime: {{ $userDate->UserInfo->first_name ?? 'Ime nije uneto' }}</h5>
+                    <h5 class="mt-2">Prezime: {{ $userDate->UserInfo->last_name ?? 'Prezime nije uneto' }}</h5>
+                    <h5 class="mt-2">Korisničko ime: {{ $userDate->username }}</h5>
+                    <h5 class="mt-2"> E-mail: {{ $userDate->email }}</h5>
                         </div>
                             </div>
                     <br>

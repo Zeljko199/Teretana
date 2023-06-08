@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Workoutplan;
 use App\Http\Requests\StoreWorkoutplanRequest;
 use App\Http\Requests\UpdateWorkoutplanRequest;
+use Illuminate\View\View;
 
 class WorkoutplanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        //
+        return view('admin.plans.plansIndex');
     }
 
     /**

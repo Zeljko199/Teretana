@@ -8,17 +8,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UserInfo extends Model
 {
-    protected $table = "user_info";
+    const TABLE = 'user_info';
+    protected $table = UserInfo::TABLE;
     protected $fillable = [
         'user_id',
         'first_name',
         'last_name',
         'phone',
         'age',
-        'gender'
+        'gender',
+        'address'
     ];
 
-    public function UserInfoToUser(): BelongsTo{
+    const GENDER_MUSKO = 'musko';
+    const GENDER_ZENSKO = 'zensko';
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
     public function UserInfoToMember(): BelongsTo{

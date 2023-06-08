@@ -12,6 +12,8 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
+    const TABLE = 'users';
+    protected $table = User::TABLE;
     use HasApiTokens, HasFactory, Notifiable;
 
     const TYPE_ADMIN = 'admin';
@@ -25,7 +27,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'username',
         'email',
-        'password'
+        'password',
+        'role'
     ];
 
     /**
@@ -47,10 +50,18 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function UserToUserInfo(): HasOne{
+    public function userInfo()
+    {
         return $this->hasOne(UserInfo::class);
-        // pozivanje: $phone = User::find(1)->phone;
     }
+
+    public function member(){
+        return $this->hasOne(Member::class);
+    }
+    public function trainer(){
+        return $this->hasOne(Trainer::class);
+    }
+
 
     public function getRoleAttribute(){
         return $this->attributes['role'];

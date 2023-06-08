@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Workout extends Model
 {
     use HasFactory;
+    const TABLE = 'workouts';
+    protected $table = Workout::TABLE;
 
     protected $fillable = [
         'name',

@@ -12,10 +12,17 @@
                         <h4 class="card-title mb-4">Detalji o korisniku</h4>
                             <form method="post" action="{{ route('store.profile') }}" enctype="multipart/form-data">
                                 @csrf
-                            <div class="row mb-3">
+                            <div class="row mb-3 mt-5">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Ime</label>
                                 <div class="col-sm-10">
-                                    <input name="name" class="form-control" type="text" value="{{ $editData->name }}" id="example-text-input">
+                                    <input name="name" class="form-control" type="text" value="{{ $editData->userInfo->first_name }}" id="example-text-input">
+                                </div>
+                            </div>
+                            <!-- end row -->
+                            <div class="row mb-3">
+                                <label for="example-text-input" class="col-sm-2 col-form-label">Prezime</label>
+                                <div class="col-sm-10">
+                                    <input name="name" class="form-control" type="text" value="{{ $editData->userInfo->last_name }}" id="example-text-input">
                                 </div>
                             </div>
                             <!-- end row -->
